@@ -1,15 +1,16 @@
 import CartItem from "../components/CartItem";
 import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
 const Cart = ({ cartItems, quantityIncrement, quantityDecrement, removeCartItem }) => {
  let totalAmount = cartItems.reduce((a, c) => a + c.price * c.quant, 0);
 
   return (
     <div>
-    
       {cartItems.length > 0 ? (
         <>
           <div className="">
             <div className="mapitems">
+              <Typography>Shopping Cart</Typography>
               {cartItems.map((item) => {
                 return <CartItem key={item.id} item={item} quantityDecrement={quantityDecrement} quantityIncrement={quantityIncrement} removeCartItem={removeCartItem}  />;
               })}

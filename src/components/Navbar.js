@@ -10,22 +10,14 @@ import {
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  navlinks: {
-    marginLeft: theme.spacing(10),
-    display: "flex",
-  },
- logo: {
-    flexGrow: "1",
-    cursor: "pointer",
-  },
   link: {
     textDecoration: "none",
     color: "white",
-    fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    fontSize: "19px",
+    marginLeft: theme.spacing(5),
     "&:hover": {
-      color: "yellow",
-      borderBottom: "1px solid white",
+      color: "white",
+      borderBottom: "0.5px solid white",
     },
   },
 }));
@@ -34,15 +26,14 @@ const Navbar = (countCartItems) => {
   const classes = useStyles();
   return (
     
-      <AppBar position="static">
+      <AppBar position="static" style={{ overflowX: 'hidden' }}>
         <CssBaseline />
-        <Toolbar>
+        <Toolbar style={{ justifyContent: 'space-between' }}>
             <Typography>
               Tee-Rex-Store
-            </Typography>
-              
-            
-              <Link to="/" className={classes.link} component="button">
+            </Typography>   
+            <div style={{ display: 'flex' }}>
+            <Link to="/" className={classes.link} component="button">
                   Products
               </Link>
                 <Link to="/cart" className={classes.link} component="button">
@@ -53,6 +44,7 @@ const Navbar = (countCartItems) => {
                     </>
                 )}
                 </Link>
+            </div>         
             
         </Toolbar>
       </AppBar>
