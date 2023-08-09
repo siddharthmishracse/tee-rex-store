@@ -1,15 +1,16 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import CardActions from '@mui/material/CardActions';
+import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Stack from "@mui/material/Stack";
+
+const ColorButton = styled(Button)(({ theme }) => ({
+  backgroundColor: "black",
+  "&:hover": {
+    backgroundColor: "darkgrey"
+  },
+}));
 
 const Product = ({ item, updateProduct }) => {
   const { imageURL, name, price, isAddedToCart } = item;
@@ -19,70 +20,51 @@ const Product = ({ item, updateProduct }) => {
   };
   
   return (
-    <> 
-    {/* <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="300"
-          image={imageURL}
-          alt={name}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Rs. {price}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button
-          size="small"
-          disabled={isAddedToCart}
-          onClick={handleAddToCart}
-        >     
-          {isAddedToCart ? 'Added to Cart' : 'Add To Cart'}
-        </Button>
-      </CardActions>
-    </Card> */}
-    <Box      
-     sx={{
+    <Grid 
+      container     
+      style={{
         flexGrow: 1,
-        border: '1px solid #e0e0e0', // Add a 1px solid border
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Add a shadow
-        borderRadius: '10px', // Optional: Add border-radius for rounded corners
-      }}>
-      <Grid container spacing={2}>
+        border: '1px solid #e0e0e0',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        borderRadius: '10px',
+        padding: '0.9rem'
+      }}
+    >
       <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center' }}>
-          <img
-            src={imageURL}
-            alt="BigCo Inc. logo"
-            style={{ maxWidth: '100%', maxHeight: '200px', objectFit: 'contain' }}
-          />
+        <img
+          src={imageURL}
+          alt="Product"
+          style={{ maxWidth: '100%', maxHeight: '230px', objectFit: 'fill' }}
+        />
       </Grid>
-      <Grid item xs={12} >
-      <Typography gutterBottom variant="h5" component="div">
-            {name}
-          </Typography> 
-      </Grid>
-      <Grid item xs={12} style={{ display: 'flex', justifyContent: 'flex-arround',flexDirection: 'row' , alignItems: 'center'}}>
-        <Typography variant="body2" color="text.secondary">
-            Rs. {price}
+      <Grid item xs={12}>
+        <Typography variant="h6" style={{ margin: '0px 0px' }}>
+          {name}
         </Typography>
-        <Button
-          size="small"
-          variant="outlined"
-          disabled={isAddedToCart}
-          onClick={handleAddToCart}
-        >     
-          {isAddedToCart ? 'Added to Cart' : 'Add To Cart'}
-        </Button>
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container style={{ alignItems: 'center' }}>
+          <Grid item xs={12} sm={6} md={6}>
+            <Typography variant="h6" style={{ margin: '0px 0px' }}>
+              Rs. {price}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} md={6}>
+            <Stack spacing={2} direction="row">
+              <ColorButton 
+                size="small"
+                variant="contained"
+                disabled={isAddedToCart}
+                onClick={handleAddToCart}
+                style={{ width: '100%' }}
+              >
+                {isAddedToCart ? 'Added to Cart' : 'Add To Cart'}
+              </ColorButton>
+            </Stack>
+          </Grid>
         </Grid>
-        </Grid>
-      </Box>      
-    </>
+      </Grid>
+    </Grid>
   );
 };
 

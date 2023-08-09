@@ -60,7 +60,13 @@ function App() {
    };
 
    const removeCartItem = (item) => {
-    setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id ));  
+    setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
+    setProducts(products.map(product => {
+       if(product.id === item.id) {
+         return {...product, isAddedToCart: false}
+       }
+       return product;
+     }))
    };
    console.log(cartItems);
 
@@ -69,7 +75,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-          <Navbar countCartItems={cartItems.length}/>
+          <Navbar countCartItems={cartItems.length} />
           <Routes>
             <Route exact path="/" element={<Home  products = {products} updateProduct = {updateProduct}/>} />
             <Route exact path="/cart" element={<Cart cartItems={cartItems} quantityDecrement={quantityDecrement} quantityIncrement={quantityIncrement} removeCartItem={removeCartItem}/>} />
