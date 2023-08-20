@@ -1,51 +1,65 @@
 import CartItem from "../components/CartItem";
 import { Link } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+}));
+
 const Cart = ({ cartItems, quantityIncrement, quantityDecrement, removeCartItem }) => {
- let totalAmount = cartItems.reduce((a, c) => a + c.price * c.quant, 0);
+let totalAmount = cartItems.reduce((a, c) => a + c.price * c.quant, 0);
+
+const classes = useStyles();
 
   return (
-    <div>
+    <Grid container className={classes.root} spacing={3}>
       {cartItems.length > 0 ? (
         <>
-          <div className="">
-            <div className="mapitems">
+          <Grid item xs={12} style={{ margin: '4rem' }}>
               <Typography>Shopping Cart</Typography>
+            <Grid container item xs={12}>
               {cartItems.map((item) => {
-                return <CartItem key={item.id} item={item} quantityDecrement={quantityDecrement} quantityIncrement={quantityIncrement} removeCartItem={removeCartItem}  />;
+                return(
+                    <Grid key={item.id} item xs={12} style={{margin: '2rem'}} >
+                        <CartItem key={item.id} item={item} quantityDecrement={quantityDecrement} quantityIncrement={quantityIncrement} removeCartItem={removeCartItem}  />
+                    </Grid>
+                ) 
               })}
-            </div>
-            <div>
-              <div className="overall">
-                <h1 className="summary">
+            </Grid>
+            <Grid>
+              <Grid item xs={12}>
+                <Typography variant="h6">
                   YOUR CART SUMMARY
-                </h1>
-                <p>
+                </Typography>
+                <Typography variant="h5">
                   {" "}
                   <span className="amount">
                     Total Amount
                   </span>{" "}
                   : Rs. {totalAmount}
-                </p>
-              </div>
-            </div>
-          </div>
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
         </>
       ) : (
         <>
-          <div className="empty">
-            <h1 className="header">
+          <Grid item xs={12}>
+            <Typography>
               Your cart is empty!
-            </h1>
+            </Typography>
             <Link to={"/"}>
               <button className="">
                 SHOP NOW
               </button>
             </Link>
-          </div>
+          </Grid>
         </>
       )}
-    </div>
+    </Grid>
   );
 };
 

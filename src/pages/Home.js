@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = ({ products,updateProduct }) => {
-  const [search, setNewSearch] = useState("");
-  const classes = useStyles();
+const [search, setNewSearch] = useState("");
+const classes = useStyles();
 
   const handleSearchChange = (e) => {
     setNewSearch(e.target.value);

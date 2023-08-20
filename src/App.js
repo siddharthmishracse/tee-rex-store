@@ -68,9 +68,6 @@ function App() {
        return product;
      }))
    };
-   console.log(cartItems);
-
-
  
   return (
     <div className="App">
