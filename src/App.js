@@ -45,6 +45,12 @@ function App() {
     const exist = cartItems.find((cartItem) => cartItem.id === decrementItem.id);
       if(exist.quant === 1){
         setCartItems(cartItems.filter((cartItem) => cartItem.id !== decrementItem.id));
+        setProducts(products.map(product => {
+          if(product.id === decrementItem.id) {
+            return {...product, isAddedToCart: false}
+          }
+          return product;
+        }))
       }else{
         setCartItems(cartItems.map((cartItem) => cartItem.id === decrementItem.id ? {...exist, quant: exist.quant - 1} : cartItem))
       }

@@ -25,8 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = (countCartItems) => {
   const classes = useStyles();
   return (
-    
-      <AppBar position="static" style={{ overflowX: 'hidden' }}>
+      <AppBar position="static" style={{ overflowX: 'hidden' , backgroundColor: 'black'}}>
         <CssBaseline />
         <Toolbar style={{ justifyContent: 'space-between' }}>
             <Typography>
@@ -44,11 +43,9 @@ const Navbar = (countCartItems) => {
                     </>
                 )}
                 </Link>
-            </div>         
-            
+            </div>                    
         </Toolbar>
-      </AppBar>
-  
+      </AppBar> 
   );
 }
 export default Navbar;
